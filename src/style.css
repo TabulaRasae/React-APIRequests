@@ -39,6 +39,23 @@ body {
 }
 
 .buttons {
-  background-color: green;
+  padding: 12px 24px;       
+  font-size: 1.2rem;        
+  font-weight: bold;
+  background-color: #28a745; 
   color: white;
+  border: none;
+  border-radius: 8px;       
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buttons:hover {
+  background-color: #20c997; 
+  transform: scale(1.05); 
+}   
+
+.buttons:active {
+  transform: scale(0.95);    
 }
