@@ -1,5 +1,9 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios"; 
 
+const Search_API_KEY = `YAYxIpb6PDFuq6AhXfhUTitXSu1oY4rE`;
+const url = `http://api.giphy.com/v1/gifs/search?q=SEARCH+TERM+GOES+HERE&api_key=${Search_API_KEY}`;
+const userInput = " ";
 const SearchField = () => {
   const [search, setSearch] = useState([]);
   const searchGifs = async () => {
@@ -16,16 +20,22 @@ const SearchField = () => {
     searchGifs(); 
   }, []);
   return (
-    <form onSubmit={searchGifs} className="search-bar">
-      <input
-        type="text"
-        placeholder="Search..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        className="search-input"
-      />
-    </form>
+     <form onSubmit={handleSubmit(get.userInput)} className="search-bar">
+       <input 
+         type="text"
+         placeholder="Search..."
+         className="search-input"
+       />
+        <input
+       type = "submit"
+       placeholder = "Submit"
+       className = "buttons"
+       /> 
+     </form>
+    
   );
 };
+
+
 
 export default SearchField;

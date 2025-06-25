@@ -32,15 +32,14 @@ const App = () => {
       <button className="buttons" onClick={fetchGifs}>
         Generate Gif
       </button>
-
-      <ul className="gif-list">
-        {gifs.map((gif) => (
-          <li key={gif.id} className="gif-card">
-            <img src={gif.images.fixed_height.url} alt={gif.title} />
-          </li>
-        ))}
-      </ul>
     </div>
+    //  <ul className="gif-list">
+    //      {gifs.map((gif) => (
+    //        <li key={gif.id} className="gif-card">
+    //          <img src={gif.images.fixed_height.url} alt={gif.title} />
+    //        </li>
+    //      ))}
+    //  </ul>
   );
 };
 
