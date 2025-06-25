@@ -1,41 +1,38 @@
-import React, {useState, useEffect} from "react";
-import axios from "axios"; 
+import React, { useState } from "react";
+import axios from "axios";
 
-const Search_API_KEY = `YAYxIpb6PDFuq6AhXfhUTitXSu1oY4rE`;
-const url = `http://api.giphy.com/v1/gifs/search?q=SEARCH+TERM+GOES+HERE&api_key=${Search_API_KEY}`;
-const userInput = " ";
-const SearchField = () => {
-  const [search, setSearch] = useState([]);
-  const searchGifs = async () => {
+const GIPHY_API_KEY = `YAYxIpb6PDFuq6AhXfhUTitXSu1oY4rE`;
+
+const SearchField = ({ setGifs, setSearchActive }) => {
+  const [query, setQuery] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!query) return;
     try {
-      const searchResponse = await axios.get(url);
-      const searchData = searchResponse.data;
-      setSearch(searchData);
+      const url = `https://api.giphy.com/v1/gifs/search?q=${encodeURIComponent(
+        query
+      )}&api_key=${GIPHY_API_KEY}`;
+      const res = await axios.get(url);
+      setGifs(res.data.data);
+      setSearchActive(true); 
     } catch (error) {
-      console.error("Error fetching gifs:", error);
+      console.error("Error searching gifs:", error);
     }
   };
 
-  useEffect(() => {
-    searchGifs(); 
-  }, []);
   return (
-     <form onSubmit={handleSubmit(get.userInput)} className="search-bar">
-       <input 
-         type="text"
-         placeholder="Search..."
-         className="search-input"
-       />
-        <input
-       type = "submit"
-       placeholder = "Submit"
-       className = "buttons"
-       /> 
-     </form>
-    
+    <form onSubmit={handleSubmit} className="search-bar">
+      <input
+        type="text"
+        placeholder="Search..."
+        className="search-input"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <input type="submit" value="Submit" className="buttons" />
+    </form>
   );
 };
-
-
 
 export default SearchField;
