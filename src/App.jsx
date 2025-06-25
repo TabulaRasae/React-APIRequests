@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import axios from "axios";
 import "./style.css";
+import SearchField from "./SearchField";
 
 
 const GIPHY_API_KEY = `YAYxIpb6PDFuq6AhXfhUTitXSu1oY4rE`;
@@ -27,17 +28,14 @@ const App = () => {
   return (
     <div className="app">
       <h1 className="title">Gif Generator!</h1>
-      <button className="buttons" onClick={fetchGifs}>
-        Generate Gif
-      </button>
+      <SearchField/>
 
-      <ul className="gif-list">
+      <div className="results">
         {gifs.map((gif) => (
-          <li key={gif.id} className="gif-card">
-            <img src={gif.images.fixed_height.url} alt={gif.title} />
-          </li>
+          <img key={gif.id} src={gif.images.fixed_height.url} alt={gif.title} />
         ))}
-      </ul>
+      </div>
+      
     </div>
   );
 };
